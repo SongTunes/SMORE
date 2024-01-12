@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 from mcs.nets.layers import MultiHeadAttention, DotProductAttention
-from mcs.nets.upper.utils import Env
+# from mcs.nets.upper.utils import Env
 from mcs.nets.Sampler import TopKSampler, CategoricalSampler
 
 MAX_NUM = 99999
@@ -31,7 +31,7 @@ class DecoderCell(nn.Module):
         self.MHA = MultiHeadAttention(n_heads=n_heads, embed_dim=embed_dim, need_W=False)
         self.SHA = DotProductAttention(clip=clip, return_logits=True, head_depth=embed_dim)
         # SHA ==> Single Head Attention, because this layer n_heads = 1 which means no need to spilt heads
-        self.env = Env
+        # self.env = Env
 
     def compute_attention(self, node_embeddings, step_context, mask):
         Ks1 = self.Wks1(node_embeddings)
